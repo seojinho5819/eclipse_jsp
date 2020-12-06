@@ -1,13 +1,13 @@
-<%@page import="board.model.NoticeDAO"%>
-<%@page import="board.model.Notice"%>
+<%@page import="board.model.ImageBoardDAO"%>
+<%@page import="board.model.ImageBoard"%>
 <%@ page contentType="text/html;charset=utf-8"%>
 
 <%@ page import="java.sql.*"%>
 <%
-	String notice_id = request.getParameter("notice_id");
+	String board_id = request.getParameter("board_id");
 
-	NoticeDAO noticeDAO = new NoticeDAO();
-	Notice notice =  noticeDAO.select(Integer.parseInt(notice_id));
+	ImageBoardDAO imageBoardDAO = new ImageBoardDAO();
+	ImageBoard board =  imageBoardDAO.select(Integer.parseInt(board_id));
 	
 	
 %>
@@ -58,13 +58,13 @@ POST : Http프로토콜에서 바디영역에 데이터를 실어 나른다. 몸
 */
 $(function(){
 	$($("input[type='button']")[0]).click(function(){ //목록으로
-		location.href="/board/list.jsp";
+		location.href="/imageboard/list.jsp";
 	});
-	$($("input[type='button']")[1]).click(function(){//수정요청
+	/* $($("input[type='button']")[1]).click(function(){//수정요청
 		if(confirm("수정하시겠어요?")){
 			$("form").attr({
 				method:"post",
-				action:"/board/edit.jsp"
+				action:"/imageboard/edit.jsp"
 			});
 			$("form").submit(); //전송행위!!!
 		}
@@ -73,11 +73,11 @@ $(function(){
 		if(confirm("삭제하시겠습니까?")){
 			$("form").attr({
 				method:"post",
-				action:"/board/delete.jsp"
+				action:"/imageboard/delete.jsp"
 			});
 			$("form").submit(); //전송행위!!!
 		}
-	});
+	}); */
 });
 </script>
 </head>
@@ -85,16 +85,16 @@ $(function(){
 
 <div class="container">
   <form>
-	<input type="hidden" name="notice_id" value="<%=notice.getNotice_id()%>">
+	<input type="hidden" name="board_id" value="<%=board.getBoard_id()%>">
 
     <label for="fname">First Name</label>
-    <input type="text" id="fname" name="author" value="<%=notice.getAuthor()%>">
+    <input type="text" id="fname" name="author" value="<%=board.getAuthor()%>">
 
     <label for="lname">title</label>
-    <input type="text" id="lname" name="title" value="<%=notice.getTitle()%>">
+    <input type="text" id="lname" name="title" value="<%=board.getTitle()%>">
 
 	<label for="subject">Content</label>
-    <textarea id="subject" name="content" placeholder="Write something.." style="height:200px"><%=notice.getContent()%></textarea>
+    <textarea id="subject" name="content" placeholder="Write something.." style="height:200px"><%=board.getContent()%></textarea>
 
     <input type="button" value="목록으로">
 	<input type="button" value="수정하기">
