@@ -10,11 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DBManager {
-	String driver="oracle.jdbc.driver.OracleDriver";
-	String url="jdbc:oracle:thin:@localhost:1521:XE";
-	String user="user1104";
-	String password="1234";
-	
+	String driver = "org.mariadb.jdbc.Driver";
+	String url = "jdbc:mariadb://localhost:3306/node";
+	   String user = "root";
+	   String password = "1234";
 	//접속객체 얻기 
 	public Connection getConnection(){
 		Connection con =null;//return을위해 위로 뺴주자

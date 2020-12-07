@@ -60,10 +60,11 @@ $(function(){
 	$($("input[type='button']")[0]).click(function(){ //목록으로
 		location.href="/imageboard/list.jsp";
 	});
-	/* $($("input[type='button']")[1]).click(function(){//수정요청
+	 $($("input[type='button']")[1]).click(function(){//수정요청
 		if(confirm("수정하시겠어요?")){
 			$("form").attr({
 				method:"post",
+				encording:"multipart/form-data",
 				action:"/imageboard/edit.jsp"
 			});
 			$("form").submit(); //전송행위!!!
@@ -77,7 +78,7 @@ $(function(){
 			});
 			$("form").submit(); //전송행위!!!
 		}
-	}); */
+	}); 
 });
 </script>
 </head>
@@ -95,7 +96,12 @@ $(function(){
 
 	<label for="subject">Content</label>
     <textarea id="subject" name="content" placeholder="Write something.." style="height:200px"><%=board.getContent()%></textarea>
-
+	
+	<img src="/data/<%=board.getFilename()%>" width="100px">
+	
+	<input type="file" name="photo">
+	<p>
+	
     <input type="button" value="목록으로">
 	<input type="button" value="수정하기">
 	<input type="button" value="삭제하기">

@@ -34,6 +34,7 @@ input[type=button]:hover {
 }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
 <script>
 /*
 GET : Http 프로토콜에서 헤더 정보에 데이터를 실어 나른다..아무래도 헤더이다 보니, 전송가능한 양이 미미하다..
@@ -42,11 +43,12 @@ POST : Http프로토콜에서 바디영역에 데이터를 실어 나른다. 몸
          현실비유) 편지지에 데이터를 숨겨 보내는 꼴임..
 */
 $(function(){
+CKEDITOR.replace( "subject");//textarea에 부여한 id를 넣음
 	$("input[type='button']").click(function(){
 		//입력양식을 서버에 전송!!
 		$("form").attr({
 			method:"post",
-			action:"/imageboard/regist.jsp"
+			action:"/qna/regist.jsp"
 		});
 		$("form").submit(); //전송행위!!!
 	});

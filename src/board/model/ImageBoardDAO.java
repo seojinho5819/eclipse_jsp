@@ -44,8 +44,8 @@ public class ImageBoardDAO {
 		ResultSet rs = null;
 		ArrayList<ImageBoard> list = new ArrayList<ImageBoard>();
 		
-		con = dbManager.getConnection();
 		String sql = "select * from imageboard order by board_id desc";
+		con = dbManager.getConnection();
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -99,14 +99,12 @@ public class ImageBoardDAO {
 				board.setContent(rs.getString("content"));
 				board.setRegdate(rs.getString("regdate"));
 				board.setHit(rs.getInt("hit"));
-				board.setHit(rs.getInt("regdate"));
 				board.setFilename(rs.getString("filename"));
 				
 				
 			}
-			sql="update imageboard set h=h+1 where board_id=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, board_id);
+			pstmt=con.prepareStatement("update imageboard set hit=hit+1 where board_id=?");
+			
 			pstmt.executeUpdate();
 			
 			
@@ -125,14 +123,15 @@ public class ImageBoardDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		int result =0;
-		String sql = "update imageboard set author=?,title=?,content=?,where board_id=?";
+		String sql = "update imageboard set author=?,title=?,content=?,filename=?,where board_id=?";
 		con = dbManager.getConnection();
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, board.getAuthor());
 			pstmt.setString(2, board.getTitle());
 			pstmt.setString(3, board.getContent());
-			pstmt.setInt(4, board.getBoard_id());
+			pstmt.setString(4, board.getFilename());
+			pstmt.setInt(5, board.getBoard_id());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

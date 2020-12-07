@@ -44,6 +44,7 @@ $(function(){
 <table>
   <tr>
     <th>No</th>
+    <th>썸네일</th>
     <th>제목</th>
     <th>작성자</th>
 	<th>등록일</th>
@@ -54,6 +55,7 @@ $(function(){
 	<%ImageBoard imageBoard = list.get(i);%>
   <tr>
     <td>26</td>
+    <td><img src="/data/<%=imageBoard.getFilename() %>" width="50px"></td>
     <td>
 		<a href="/imageboard/detail.jsp?board_id=<%=imageBoard.getBoard_id()%>"><%=imageBoard.getTitle()%></a>
 	</td>
