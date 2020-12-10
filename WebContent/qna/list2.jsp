@@ -2,7 +2,9 @@
 <%@page import="java.util.List"%>
 <%@page import="board.model.QnADAO"%>
 <%@ page contentType="text/html;charset=utf-8"%>
-<%	
+<%
+//숙제 수정 삭제, 답글이 있을시 '삭제된 글입니다' 한후 링크풀기
+
 	//DB연동	
 	QnADAO dao = new QnADAO();
 	List<QnA> list = dao.selectAll();
@@ -88,7 +90,7 @@ a{
     	<%if(qna.getDepth()>0){ //답변인것만..%>
     	<img src="/images/reply.png" style="margin-left:<%=10*qna.getDepth()%>">
     	<%} %>
-    	<%=qna.getTitle() %>
+    	<a href="/qna/detail.jsp?qna_id=<%=qna.getQna_id()%>"><%=qna.getTitle()%></a>
     </td>
     <td><%=qna.getWriter() %></td>
 	<td><%=qna.getRegdate() %></td>
@@ -131,3 +133,4 @@ a{
 </table>
 </body>
 </html>
+
